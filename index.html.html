@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Онлайн-калькуляторы: кредит, ипотека, налоги, калории, ИМТ, валюта</title>
+<meta name="description" content="Бесплатные онлайн-калькуляторы: кредитный и ипотечный, налоги и НДС, калории, ИМТ, конвертер валют. Результат сразу, без регистрации.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f1;--panel:#fff;--ink:#14232b;--muted:#5b6b73;--line:#d3ddda;--accent:#0f5c6e;--accent-ink:#fff;--hi:#f2b84b;--hi-ink:#2a1d00;--ad:#e4ebe8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a1f;--panel:#17262d;--ink:#e6eeee;--muted:#93a6ac;--line:#2a3d45;--accent:#4cc3d9;--accent-ink:#06222a;--hi:#f2b84b;--hi-ink:#2a1d00;--ad:#1c2d34}}
+:root[data-theme="dark"]{--bg:#0f1a1f;--panel:#17262d;--ink:#e6eeee;--muted:#93a6ac;--line:#2a3d45;--accent:#4cc3d9;--accent-ink:#06222a;--hi:#f2b84b;--hi-ink:#2a1d00;--ad:#1c2d34}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Onest,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:1040px;margin:0 auto;padding:16px 16px 40px}
+header{background:var(--accent);color:var(--accent-ink);border-radius:18px;padding:14px 20px 22px;margin-bottom:14px}
+.langbar{display:flex;justify-content:flex-end}
+.langbar select{font:inherit;font-size:15px;min-height:40px;color:inherit;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);border-radius:20px;padding:0 14px}
+.langbar option{color:#14232b;background:#fff}
+header h1{font-size:clamp(28px,6vw,44px);line-height:1.08;margin:6px 0 8px;font-weight:800;letter-spacing:-.02em}
+header p{margin:0;max-width:58ch;opacity:.92}
+.ad{background:var(--ad);border:1px dashed var(--line);color:var(--muted);font-size:13px;text-align:center;padding:20px 10px;border-radius:12px;margin:14px 0}
+.layout{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:start}
+nav{display:flex;flex-direction:column;gap:8px;position:sticky;top:12px}
+nav button{font:inherit;display:flex;align-items:center;gap:10px;min-height:48px;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:500}
+nav button i{font-style:normal;font-size:20px;line-height:1}
+nav button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+main{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(15,50,60,.08);min-width:0}
+main h2{margin:0 0 4px;font-size:26px;line-height:1.2;font-weight:800}
+main .desc{margin:0 0 20px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.fields{display:grid;gap:16px;align-content:start}
+label{display:block;font-size:15px;font-weight:500;margin-bottom:6px}
+.in{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden}
+.in:focus-within{border-color:var(--accent)}
+.in input,.in select{flex:1;min-width:0;min-height:50px;border:0;background:transparent;color:inherit;font:inherit;font-size:16px;padding:12px 14px}
+.in select{padding-right:8px}
+.in span{padding:0 14px;color:var(--muted);font-size:15px;white-space:nowrap}
+.res{display:grid;gap:10px;align-content:start}
+.big{background:var(--hi);color:var(--hi-ink);border-radius:14px;padding:18px}
+.big small{display:block;font-size:15px;opacity:.85}
+.big b{font-size:clamp(30px,7vw,40px);font-weight:800;line-height:1.15;overflow-wrap:anywhere}
+.row{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding:10px 0;font-size:15px}
+.row span{color:var(--muted)}.row b{text-align:right}
+.note{font-size:13px;color:var(--muted);margin:14px 0 0}
+footer{margin-top:24px;color:var(--muted);font-size:13px}
+.lang{position:fixed;inset:0;z-index:10;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px));overflow:auto}
+.lang[hidden]{display:none}
+.lang .box{max-width:420px;width:100%}
+.lang h2{margin:0 0 6px;font-size:28px;font-weight:800}
+.lang p{margin:0 0 18px;color:var(--muted);font-size:14px}
+.langs{display:grid;gap:10px}
+.langs button{font:inherit;font-size:18px;font-weight:700;text-align:left;min-height:56px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:14px 16px;border-radius:12px;cursor:pointer}
+.langs button:hover{border-color:var(--accent)}
+@media (max-width:760px){
+.wrap{padding:10px 12px 32px}
+header{border-radius:16px;padding:12px 16px 18px}
+.layout{grid-template-columns:1fr;gap:12px}
+nav{flex-direction:row;overflow-x:auto;position:static;padding:2px 2px 6px;gap:8px;scroll-snap-type:x proximity;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{white-space:nowrap;border-radius:24px;scroll-snap-align:start;padding:8px 16px}
+main{padding:16px;border-radius:16px}
+main h2{font-size:22px}
+.cols{grid-template-columns:1fr;gap:16px}
+.res{order:-1}
+.ad{padding:14px 8px}}
+</style>
+</head>
+<body>
+<div id="lang" class="lang" role="dialog" aria-modal="true" aria-label="Язык / Til"><div class="box"><h2>Выберите язык</h2><p>Тілді таңдаңыз / Тилди тандаңыз / Забонро интихоб кунед / Tilni tanlang</p><div class="langs"><button data-l="ru">Русский</button><button data-l="kk">Қазақша</button><button data-l="ky">Кыргызча</button><button data-l="tg">Тоҷикӣ</button><button data-l="uz">Oʻzbekcha</button></div></div></div>
+<div class="wrap">
+<header>
+<div class="langbar"><select id="langsel" aria-label="Язык / Til"><option value="ru">Русский</option><option value="kk">Қазақша</option><option value="ky">Кыргызча</option><option value="tg">Тоҷикӣ</option><option value="uz">Oʻzbekcha</option></select></div>
+<h1 data-k="Онлайн-калькуляторы">Онлайн-калькуляторы</h1>
+<p data-k="Считайте кредит, ипотеку, налоги, калории и ИМТ. Результат появляется сразу, регистрация не нужна.">Считайте кредит, ипотеку, налоги, калории и ИМТ. Результат появляется сразу, регистрация не нужна.</p>
+</header>
+<div class="ad" data-k="Место для рекламы (баннер 728×90)">Место для рекламы (баннер 728×90)</div>
+<div class="layout">
+<nav id="nav" role="tablist" aria-label="Калькуляторы"></nav>
+<main id="main" role="tabpanel"></main>
+</div>
+<div class="ad" data-k="Место для рекламы (баннер 728×90)">Место для рекламы (баннер 728×90)</div>
+<footer data-k="Расчёты приблизительные и не являются финансовой или медицинской консультацией.">Расчёты приблизительные и не являются финансовой или медицинской консультацией.</footer>
+</div>
+<script>
+var LANGS=['ru','kk','ky','tg','uz'],LANG='ru',TR={},ROWS=[["Онлайн-калькуляторы", "Онлайн калькуляторлар", "Онлайн калькуляторлор", "Калкуляторҳои онлайн", "Onlayn kalkulyatorlar"], ["Считайте кредит, ипотеку, налоги, калории и ИМТ. Результат появляется сразу, регистрация не нужна.", "Несиені, ипотеканы, салықтарды, калорияны және ДМИ-ді есептеңіз. Нәтиже бірден шығады, тіркелу қажет емес.", "Насыяны, ипотеканы, салыктарды, калорияны жана ДМИ эсептеңиз. Жыйынтык дароо чыгат, катталуу талап кылынбайт.", "Қарз, ипотека, андоз, калория ва ИМБ-ро ҳисоб кунед. Натиҷа фавран пайдо мешавад, сабти ном лозим нест.", "Kredit, ipoteka, soliq, kaloriya va TMI ni hisoblang. Natija darhol chiqadi, ro‘yxatdan o‘tish shart emas."], ["Место для рекламы (баннер 728×90)", "Жарнама орны (баннер 728×90)", "Жарнама үчүн орун (баннер 728×90)", "Ҷой барои реклама (баннер 728×90)", "Reklama joyi (banner 728×90)"], ["Место для рекламы (блок 300×250)", "Жарнама орны (блок 300×250)", "Жарнама үчүн орун (блок 300×250)", "Ҷой барои реклама (блок 300×250)", "Reklama joyi (blok 300×250)"], ["Расчёты приблизительные и не являются финансовой или медицинской консультацией.", "Есептеулер шамамен жасалған және қаржылық не медициналық кеңес болып табылмайды.", "Эсептөөлөр болжолдуу жана каржылык же медициналык кеңеш болуп саналбайт.", "Ҳисобҳо тахминӣ буда, маслиҳати молиявӣ ё тиббӣ намебошанд.", "Hisob-kitoblar taxminiy bo‘lib, moliyaviy yoki tibbiy maslahat hisoblanmaydi."], ["Пустые и отрицательные значения считаются нулём.", "Бос және теріс мәндер нөл деп алынады.", "Бош жана терс маанилер нөл деп эсептелет.", "Қиматҳои холӣ ва манфӣ сифр ҳисоб карда мешаванд.", "Bo‘sh va manfiy qiymatlar nol deb olinadi."], ["Кредитный калькулятор", "Несие калькуляторы", "Насыя калькулятору", "Калкулятори қарз", "Kredit kalkulyatori"], ["Ипотека", "Ипотека", "Ипотека", "Ипотека", "Ipoteka"], ["Налоги и НДС", "Салықтар және ҚҚС", "Салыктар жана КНС", "Андоз ва ААИ", "Soliqlar va QQS"], ["Калории", "Калория", "Калория", "Калория", "Kaloriya"], ["ИМТ", "ДМИ", "ДМИ", "ИМБ", "TMI"], ["Конвертер валют", "Валюта айырбастағыш", "Валюта конвертери", "Табдили асъор", "Valyuta konvertori"], ["Ипотечный калькулятор", "Ипотека калькуляторы", "Ипотека калькулятору", "Калкулятори ипотека", "Ipoteka kalkulyatori"], ["Калькулятор налогов и НДС", "Салық және ҚҚС калькуляторы", "Салык жана КНС калькулятору", "Калкулятори андоз ва ААИ", "Soliq va QQS kalkulyatori"], ["Калькулятор калорий", "Калория калькуляторы", "Калория калькулятору", "Калкулятори калория", "Kaloriya kalkulyatori"], ["Калькулятор ИМТ", "ДМИ калькуляторы", "ДМИ калькулятору", "Калкулятори ИМБ", "TMI kalkulyatori"], ["Ежемесячный платёж и переплата по аннуитетному кредиту.", "Аннуитеттік несие бойынша айлық төлем және артық төлем.", "Аннуитеттик насыя боюнча айлык төлөм жана ашыкча төлөм.", "Пардохти моҳона ва пардохти изофӣ аз рӯи қарзи аннуитетӣ.", "Annuitet kredit bo‘yicha oylik to‘lov va ortiqcha to‘lov."], ["Платёж по ипотеке с учётом первоначального взноса.", "Бастапқы жарнаны ескере отырып, ипотека бойынша төлем.", "Баштапкы төлөмдү эске алуу менен ипотека боюнча төлөм.", "Пардохти ипотека бо дарназардошти пардохти аввалия.", "Dastlabki badalni hisobga olgan holda ipoteka bo‘yicha to‘lov."], ["Введите свою ставку: она зависит от страны и вида дохода.", "Өз мөлшерлемеңізді енгізіңіз: ол елге және табыс түріне байланысты.", "Өз ставкаңызды киргизиңиз: ал өлкөгө жана киреше түрүнө жараша болот.", "Меъёри худро ворид кунед: он аз кишвар ва навъи даромад вобаста аст.", "O‘z stavkangizni kiriting: u davlat va daromad turiga bog‘liq."], ["Суточная норма по формуле Миффлина — Сан-Жеора.", "Миффлин — Сан-Жеор формуласы бойынша тәуліктік норма.", "Миффлин — Сан-Жеор формуласы боюнча суткалык норма.", "Меъёри шабонарӯзӣ аз рӯи формулаи Миффлин — Сан-Жеор.", "Mifflin — San-Jeor formulasi bo‘yicha sutkalik me’yor."], ["Индекс массы тела по росту и весу.", "Бой және салмақ бойынша дене массасының индексі.", "Бой жана салмак боюнча дене массасынын индекси.", "Индекси массаи бадан аз рӯи қад ва вазн.", "Bo‘y va vazn bo‘yicha tana massasi indeksi."], ["Выберите валюты из списка. Курсы обновляются автоматически при открытии сайта.", "Тізімнен валюталарды таңдаңыз. Курстар сайтты ашқанда автоматты түрде жаңарады.", "Тизмеден валюталарды тандаңыз. Курстар сайт ачылганда автоматтык түрдө жаңырат.", "Асъорҳоро аз рӯйхат интихоб кунед. Қурбҳо ҳангоми кушодани сайт худкор навсозӣ мешаванд.", "Ro‘yxatdan valyutalarni tanlang. Kurslar sayt ochilganda avtomatik yangilanadi."], ["Валюта", "Валюта", "Валюта", "Асъор", "Valyuta"], ["Сумма кредита", "Несие сомасы", "Насыя суммасы", "Маблағи қарз", "Kredit summasi"], ["Процентная ставка в год", "Жылдық пайыздық мөлшерлеме", "Жылдык пайыздык ставка", "Меъёри фоизии солона", "Yillik foiz stavkasi"], ["Срок", "Мерзімі", "Мөөнөтү", "Мӯҳлат", "Muddati"], ["Стоимость жилья", "Тұрғын үй құны", "Турак жайдын баасы", "Арзиши манзил", "Uy-joy narxi"], ["Первоначальный взнос", "Бастапқы жарна", "Баштапкы төлөм", "Пардохти аввалия", "Dastlabki badal"], ["Что посчитать", "Нені есептеу", "Эмнени эсептөө", "Чиро ҳисоб кардан", "Nimani hisoblash"], ["Сумма", "Сомасы", "Сумма", "Маблағ", "Summa"], ["Ставка", "Мөлшерлеме", "Ставка", "Меъёр", "Stavka"], ["Пол", "Жынысы", "Жынысы", "Ҷинс", "Jinsi"], ["Возраст", "Жасы", "Жашы", "Синну сол", "Yoshi"], ["Вес", "Салмағы", "Салмагы", "Вазн", "Vazni"], ["Рост", "Бойы", "Бою", "Қад", "Bo‘yi"], ["Активность", "Белсенділік", "Активдүүлүк", "Фаъолият", "Faollik"], ["Из валюты", "Қай валютадан", "Кайсы валютадан", "Аз асъор", "Qaysi valyutadan"], ["В валюту", "Қай валютаға", "Кайсы валютага", "Ба асъор", "Qaysi valyutaga"], ["лет", "жыл", "жыл", "сол", "yil"], ["ед.", "бірлік", "бирдик", "адад", "birlik"], ["кг", "кг", "кг", "кг", "kg"], ["см", "см", "см", "см", "sm"], ["ккал", "ккал", "ккал", "ккал", "kkal"], ["Добавить НДС к сумме", "Сомаға ҚҚС қосу", "Суммага КНС кошуу", "Ба маблағ ААИ илова кардан", "Summaga QQS qo‘shish"], ["Выделить НДС из суммы", "Сомадан ҚҚС бөлу", "Суммадан КНС бөлүп алуу", "Аз маблағ ААИ ҷудо кардан", "Summadan QQS ajratish"], ["Доход после налога", "Салықтан кейінгі табыс", "Салыктан кийинки киреше", "Даромад пас аз андоз", "Soliqdan keyingi daromad"], ["Женский", "Әйел", "Аял", "Зан", "Ayol"], ["Мужской", "Ер", "Эркек", "Мард", "Erkak"], ["Сидячий образ жизни", "Отырықшы өмір салты", "Отурукташкан жашоо образы", "Тарзи ҳаёти нишаст", "O‘tirib ishlaydigan turmush tarzi"], ["Лёгкая (1–3 тренировки в неделю)", "Жеңіл (аптасына 1–3 жаттығу)", "Жеңил (жумасына 1–3 машыгуу)", "Сабук (дар як ҳафта 1–3 машқ)", "Yengil (haftasiga 1–3 mashg‘ulot)"], ["Средняя (3–5 тренировок)", "Орташа (3–5 жаттығу)", "Орточо (3–5 машыгуу)", "Миёна (3–5 машқ)", "O‘rtacha (3–5 mashg‘ulot)"], ["Высокая (6–7 тренировок)", "Жоғары (6–7 жаттығу)", "Жогорку (6–7 машыгуу)", "Баланд (6–7 машқ)", "Yuqori (6–7 mashg‘ulot)"], ["Платёж в месяц", "Айлық төлем", "Айлык төлөм", "Пардохти моҳона", "Oylik to‘lov"], ["Общая выплата", "Жалпы төлем", "Жалпы төлөм", "Пардохти умумӣ", "Umumiy to‘lov"], ["Переплата", "Артық төлем", "Ашыкча төлөм", "Пардохти изофӣ", "Ortiqcha to‘lov"], ["Количество платежей", "Төлемдер саны", "Төлөмдөр саны", "Шумораи пардохтҳо", "To‘lovlar soni"], ["Сумма с НДС", "ҚҚС-пен сома", "КНС менен сумма", "Маблағ бо ААИ", "QQS bilan summa"], ["Сумма без НДС", "ҚҚС-сіз сома", "КНС жок сумма", "Маблағ бе ААИ", "QQS siz summa"], ["НДС", "ҚҚС", "КНС", "ААИ", "QQS"], ["НДС в сумме", "Сомадағы ҚҚС", "Суммадагы КНС", "ААИ дар маблағ", "Summadagi QQS"], ["На руки", "Қолға алатыны", "Колго тийе турганы", "Ба даст меояд", "Qo‘lga tegadigani"], ["Налог", "Салық", "Салык", "Андоз", "Soliq"], ["Начислено", "Есептелгені", "Эсептелгени", "Ҳисоб шуд", "Hisoblangan"], ["Норма для поддержания веса", "Салмақты ұстап тұру нормасы", "Салмакты сактоо нормасы", "Меъёр барои нигоҳ доштани вазн", "Vaznni saqlash me’yori"], ["Базовый обмен", "Базалық зат алмасу", "Базалык зат алмашуу", "Мубодилаи асосии моддаҳо", "Bazal almashinuv"], ["Для похудения (−15%)", "Арықтау үшін (−15%)", "Арыктоо үчүн (−15%)", "Барои вазн кам кардан (−15%)", "Ozish uchun (−15%)"], ["Для набора массы (+15%)", "Салмақ қосу үшін (+15%)", "Салмак кошуу үчүн (+15%)", "Барои вазн зиёд кардан (+15%)", "Vazn olish uchun (+15%)"], ["Ваш ИМТ", "Сіздің ДМИ", "Сиздин ДМИ", "ИМБ-и шумо", "Sizning TMI"], ["Категория", "Санаты", "Категориясы", "Категория", "Toifa"], ["Нормальный вес для вашего роста", "Бойыңызға сәйкес қалыпты салмақ", "Бойуңузга ылайыктуу кадимки салмак", "Вазни муқаррарӣ барои қади шумо", "Bo‘yingizga mos normal vazn"], ["Результат", "Нәтиже", "Жыйынтык", "Натиҷа", "Natija"], ["Курс", "Курс", "Курс", "Қурб", "Kurs"], ["Обратный курс", "Кері курс", "Тескери курс", "Қурби баръакс", "Teskari kurs"], ["Источник курсов", "Курс дереккөзі", "Курс булагы", "Манбаи қурбҳо", "Kurs manbasi"], ["Недостаточный вес", "Салмақ жеткіліксіз", "Салмак жетишсиз", "Вазни нокифоя", "Vazn yetishmaydi"], ["Норма", "Қалыпты", "Кадимки", "Муқаррарӣ", "Normal"], ["Избыточный вес", "Артық салмақ", "Ашыкча салмак", "Вазни зиёд", "Ortiqcha vazn"], ["Ожирение", "Семіздік", "Семирүү", "Фарбеҳӣ", "Semizlik"], ["примерные курсы, ещё не обновлены", "шамамен курстар, әлі жаңартылмаған", "болжолдуу курстар, али жаңыла элек", "қурбҳои тахминӣ, ҳанӯз навсозӣ нашудаанд", "taxminiy kurslar, hali yangilanmagan"], ["актуальны на", "жаңартылған", "жаңыртылган", "навсозӣ шуд", "yangilangan"], ["доллар США", "АҚШ доллары", "АКШ доллары", "доллари ИМА", "AQSH dollari"], ["евро", "еуро", "евро", "евро", "yevro"], ["российский рубль", "ресей рублі", "орус рублу", "рубли русӣ", "rossiya rubli"], ["сомони", "сомони", "сомони", "сомонӣ", "somoniy"], ["тенге", "теңге", "теңге", "тенге", "tenge"], ["узбекский сум", "өзбек сомы", "өзбек сому", "сӯми узбекӣ", "o‘zbek so‘mi"], ["киргизский сом", "қырғыз сомы", "кыргыз сому", "сӯми қирғизӣ", "qirg‘iz somi"], ["гривна", "гривна", "гривна", "гривна", "grivna"], ["белорусский рубль", "беларусь рублі", "беларус рублу", "рубли белорусӣ", "belarus rubli"], ["лари", "лари", "лари", "лари", "lari"], ["фунт стерлингов", "фунт стерлинг", "фунт стерлинг", "фунт стерлинг", "funt sterling"], ["юань", "юань", "юань", "юан", "yuan"], ["турецкая лира", "түрік лирасы", "түрк лирасы", "лираи туркӣ", "turk lirasi"], ["дирхам ОАЭ", "БАӘ дирһамы", "БАЭ дирхами", "дирҳами АМА", "BAA dirhami"], ["злотый", "злоты", "злотый", "злотый", "zlotiy"], ["иена", "иена", "иена", "иена", "yena"]];
+ROWS.forEach(function(r){for(var i=1;i<5;i++){(TR[LANGS[i]]=TR[LANGS[i]]||{})[r[0]]=r[i]}});
+function t(x){return(TR[LANG]&&TR[LANG][x])||x}
+function tt(o){var i=o.indexOf(' — ');return i>0?o.slice(0,i+3)+t(o.slice(i+3)):t(o)}
+function tv(x){x=String(x);if(x.indexOf('актуальны на ')===0)return t('актуальны на')+' '+x.slice(13);return t(x).replace(/ккал|кг/g,function(u){return t(u)})}
+var nf=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2});
+function m(x){return isFinite(x)?nf.format(x):'—'}
+function annuity(P,rate,n){var r=rate/100/12;if(n<=0)return 0;return r===0?P/n:P*r/(1-Math.pow(1+r,-n))}
+var CUR_NAMES={USD:'доллар США',EUR:'евро',RUB:'российский рубль',TJS:'сомони',KZT:'тенге',UZS:'узбекский сум',KGS:'киргизский сом',UAH:'гривна',BYN:'белорусский рубль',GEL:'лари',GBP:'фунт стерлингов',CNY:'юань',TRY:'турецкая лира',AED:'дирхам ОАЭ',PLN:'злотый',JPY:'иена'};
+var RATES={USD:1,EUR:.92,RUB:90,TJS:10.6,KZT:500,UZS:12700,KGS:87,UAH:41,BYN:3.3,GEL:2.7,GBP:.78,CNY:7.2,TRY:34,AED:3.67,PLN:4,JPY:150};
+var RSRC='примерные курсы, ещё не обновлены';
+var CUR_OPTS=Object.keys(CUR_NAMES).map(function(k){return[k,k+' — '+CUR_NAMES[k]]});
+function r4(x){return isFinite(x)?new Intl.NumberFormat('ru-RU',{maximumSignificantDigits:5}).format(x):'—'}
+var C=[
+{id:'credit',name:'Кредитный калькулятор',title:'Кредитный калькулятор',desc:'Ежемесячный платёж и переплата по аннуитетному кредиту.',
+f:[{id:'cur',l:'Валюта',t:'select',v:'RUB',o:CUR_OPTS},{id:'sum',l:'Сумма кредита',v:500000,s:'₽'},{id:'rate',l:'Процентная ставка в год',v:15,s:'%'},{id:'yrs',l:'Срок',v:3,s:'лет'}],
+c:function(v){var n=v.yrs*12,p=annuity(v.sum,v.rate,n),t=p*n;return{big:['Платёж в месяц',m(p)+' '+v.cur],rows:[['Общая выплата',m(t)+' '+v.cur],['Переплата',m(t-v.sum)+' '+v.cur],['Количество платежей',m(n)]]}}},
+{id:'mortgage',name:'Ипотека',title:'Ипотечный калькулятор',desc:'Платёж по ипотеке с учётом первоначального взноса.',
+f:[{id:'cur',l:'Валюта',t:'select',v:'RUB',o:CUR_OPTS},{id:'price',l:'Стоимость жилья',v:6000000,s:'₽'},{id:'down',l:'Первоначальный взнос',v:20,s:'%'},{id:'rate',l:'Процентная ставка в год',v:12,s:'%'},{id:'yrs',l:'Срок',v:20,s:'лет'}],
+c:function(v){var loan=v.price*(1-v.down/100),n=v.yrs*12,p=annuity(loan,v.rate,n),t=p*n;return{big:['Платёж в месяц',m(p)+' '+v.cur],rows:[['Сумма кредита',m(loan)+' '+v.cur],['Первоначальный взнос',m(v.price-loan)+' '+v.cur],['Общая выплата',m(t)+' '+v.cur],['Переплата',m(t-loan)+' '+v.cur]]}}},
+{id:'tax',name:'Налоги и НДС',title:'Калькулятор налогов и НДС',desc:'Введите свою ставку: она зависит от страны и вида дохода.',
+f:[{id:'cur',l:'Валюта',t:'select',v:'RUB',o:CUR_OPTS},{id:'mode',l:'Что посчитать',t:'select',v:'add',o:[['add','Добавить НДС к сумме'],['cut','Выделить НДС из суммы'],['inc','Доход после налога']]},{id:'sum',l:'Сумма',v:100000,s:'₽'},{id:'rate',l:'Ставка',v:20,s:'%'}],
+c:function(v){var r=v.rate/100,x;if(v.mode==='add'){x=v.sum*r;return{big:['Сумма с НДС',m(v.sum+x)+' '+v.cur],rows:[['Сумма без НДС',m(v.sum)+' '+v.cur],['НДС',m(x)+' '+v.cur]]}}
+if(v.mode==='cut'){x=v.sum-v.sum/(1+r);return{big:['НДС в сумме',m(x)+' '+v.cur],rows:[['Сумма без НДС',m(v.sum-x)+' '+v.cur],['Сумма с НДС',m(v.sum)+' '+v.cur]]}}
+x=v.sum*r;return{big:['На руки',m(v.sum-x)+' '+v.cur],rows:[['Налог',m(x)+' '+v.cur],['Начислено',m(v.sum)+' '+v.cur]]}}},
+{id:'cal',name:'Калории',title:'Калькулятор калорий',desc:'Суточная норма по формуле Миффлина — Сан-Жеора.',
+f:[{id:'sex',l:'Пол',t:'select',v:'f',o:[['f','Женский'],['m','Мужской']]},{id:'age',l:'Возраст',v:30,s:'лет'},{id:'w',l:'Вес',v:65,s:'кг'},{id:'h',l:'Рост',v:170,s:'см'},{id:'act',l:'Активность',t:'select',v:'1.375',o:[['1.2','Сидячий образ жизни'],['1.375','Лёгкая (1–3 тренировки в неделю)'],['1.55','Средняя (3–5 тренировок)'],['1.725','Высокая (6–7 тренировок)']]}],
+c:function(v){var b=10*v.w+6.25*v.h-5*v.age+(v.sex==='m'?5:-161),k=b*v.act;return{big:['Норма для поддержания веса',m(Math.round(k))+' ккал'],rows:[['Базовый обмен',m(Math.round(b))+' ккал'],['Для похудения (−15%)',m(Math.round(k*.85))+' ккал'],['Для набора массы (+15%)',m(Math.round(k*1.15))+' ккал']]}}},
+{id:'bmi',name:'ИМТ',title:'Калькулятор ИМТ',desc:'Индекс массы тела по росту и весу.',
+f:[{id:'w',l:'Вес',v:65,s:'кг'},{id:'h',l:'Рост',v:170,s:'см'}],
+c:function(v){var q=v.w/Math.pow(v.h/100,2),c=q<18.5?'Недостаточный вес':q<25?'Норма':q<30?'Избыточный вес':'Ожирение';return{big:['Ваш ИМТ',m(Math.round(q*10)/10)],rows:[['Категория',c],['Нормальный вес для вашего роста',m(18.5*Math.pow(v.h/100,2))+'–'+m(24.9*Math.pow(v.h/100,2))+' кг']]}}},
+{id:'fx',name:'Конвертер валют',title:'Конвертер валют',desc:'Выберите валюты из списка. Курсы обновляются автоматически при открытии сайта.',
+f:[{id:'sum',l:'Сумма',v:100,s:'ед.'},{id:'a',l:'Из валюты',t:'select',v:'USD',o:CUR_OPTS},{id:'b',l:'В валюту',t:'select',v:'RUB',o:CUR_OPTS}],
+c:function(v){var k=RATES[v.b]/RATES[v.a];return{big:['Результат',m(v.sum*k)+' '+v.b],rows:[['Курс','1 '+v.a+' = '+r4(k)+' '+v.b],['Обратный курс','1 '+v.b+' = '+r4(1/k)+' '+v.a],['Источник курсов',RSRC]]}}}
+];
+var nav=document.getElementById('nav'),main=document.getElementById('main'),cur;
+function show(id){
+cur=C.filter(function(c){return c.id===id})[0]||C[0];
+Array.prototype.forEach.call(nav.children,function(b){b.setAttribute('aria-selected',b.dataset.id===cur.id)});
+document.title=t(cur.title);
+var h='<h2>'+t(cur.title)+'</h2><p class="desc">'+t(cur.desc)+'</p><div class="cols"><div class="fields">';
+cur.f.forEach(function(f){
+h+='<div><label for="f_'+f.id+'">'+t(f.l)+'</label><div class="in">';
+if(f.t==='select'){h+='<select id="f_'+f.id+'">'+f.o.map(function(o){return'<option value="'+o[0]+'"'+(o[0]===f.v?' selected':'')+'>'+tt(o[1])+'</option>'}).join('')+'</select>'}
+else{h+='<input id="f_'+f.id+'" '+(f.t==='text'?'type="text" maxlength="6"':'type="number" inputmode="decimal" min="0" step="any"')+' value="'+f.v+'">'+(f.s?'<span'+(f.s==='₽'?' data-money':'')+'>'+t(f.s)+'</span>':'')}
+h+='</div></div>'});
+h+='</div><div class="res" id="res" aria-live="polite"></div></div><div class="ad">'+t('Место для рекламы (блок 300×250)')+'</div><p class="note">'+t('Пустые и отрицательные значения считаются нулём.')+'</p>';
+main.innerHTML=h;
+main.querySelectorAll('input,select').forEach(function(e){e.addEventListener('input',calc)});
+calc();
+if(location.hash!=='#'+cur.id){try{history.replaceState(null,'','#'+cur.id)}catch(e){}}
+}
+function calc(){
+var v={};
+cur.f.forEach(function(f){var e=document.getElementById('f_'+f.id).value;v[f.id]=(f.t==='select'||f.t==='text')?e:Math.max(0,parseFloat(e)||0)});
+if(v.cur)document.querySelectorAll('[data-money]').forEach(function(e){e.textContent=v.cur});
+var r=cur.c(v);
+document.getElementById('res').innerHTML='<div class="big"><small>'+t(r.big[0])+'</small><b>'+tv(r.big[1])+'</b></div>'+r.rows.map(function(x){return'<div class="row"><span>'+t(x[0])+'</span><b>'+tv(x[1])+'</b></div>'}).join('');
+}
+function applyRates(r,src){for(var k in RATES){if(r[k])RATES[k]=r[k]}RSRC=src;if(cur&&cur.id==='fx')calc()}
+function loadRates(){
+fetch('https://open.er-api.com/v6/latest/USD').then(function(x){return x.json()}).then(function(d){if(!d.rates)throw 0;applyRates(d.rates,'актуальны на '+(d.time_last_update_utc||'').slice(5,16))}).catch(function(){
+fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json').then(function(x){return x.json()}).then(function(d){var r={};for(var k in RATES){if(d.usd[k.toLowerCase()])r[k]=d.usd[k.toLowerCase()]}applyRates(r,'актуальны на '+d.date)}).catch(function(){})})}
+var ICON={credit:'💳',mortgage:'🏠',tax:'🧾',cal:'🔥',bmi:'⚖️',fx:'💱'};
+function buildNav(){nav.innerHTML='';C.forEach(function(c){var b=document.createElement('button');b.innerHTML='<i aria-hidden="true">'+ICON[c.id]+'</i><span></span>';b.lastChild.textContent=t(c.name);b.dataset.id=c.id;b.setAttribute('role','tab');b.onclick=function(){show(c.id)};nav.appendChild(b)})}
+window.addEventListener('hashchange',function(){show(location.hash.slice(1))});
+var overlay=document.getElementById('lang'),sel=document.getElementById('langsel');
+function applyStatic(){document.querySelectorAll('[data-k]').forEach(function(e){e.textContent=t(e.dataset.k)})}
+function setLang(l){LANG=l;try{localStorage.setItem('lang',l)}catch(e){}document.documentElement.lang=l;sel.value=l;overlay.hidden=true;buildNav();applyStatic();show(cur?cur.id:location.hash.slice(1))}
+overlay.querySelectorAll('button').forEach(function(b){b.onclick=function(){setLang(b.dataset.l)}});
+sel.onchange=function(){setLang(sel.value)};
+var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
+if(saved&&LANGS.indexOf(saved)>=0){setLang(saved)}else{buildNav();show(location.hash.slice(1));overlay.hidden=false;overlay.querySelector('button').focus()}
+loadRates();
+</script>
+</body>
+</html>
